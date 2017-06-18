@@ -25,6 +25,8 @@ Veja LICENSE.txt para informações detalhadas da licença LGPL 3.0
 Originalmente por BrunoMine, Bruno Borges <borgesdossantosbruno@gmail.com> (LGPL 3.0)
 
 ### Autores de mídias (texturas, modelos and sons)
+
+Todas que não estão descritas aqui são de autoria de
 BrunoMine, Bruno Borges <borgesdossantosbruno@gmail.com> (CC BY-SA 3.0)
 
 Zeg'9 (CC BY-SA 3.0)
