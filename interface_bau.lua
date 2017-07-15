@@ -73,7 +73,13 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	
 			-- Pegar coordenada do jogador
 			local pos = player:getpos()
-	
+			
+			-- Verificar se o jogador tem um balao
+			if telepro.bd.verif(name, "pos") ~= true then
+				minetest.chat_send_player(name, "Precisas ter um balao ativo")
+				return
+			end
+			
 			-- Verificar se tem um Bau de Balao perto do jogador que pertenca a ele
 			if telepro.verif_prox_bau(player) == false then
 				minetest.chat_send_player(name, "Muito distante do seu Bau de Balao")
@@ -83,7 +89,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			-- Verifica status do bau do balao
 			do
 				-- Pega os metadados do bau
-				local meta = minetest.get_meta(telepro.bd:pegar(name, "pos"))
+				local meta = minetest.get_meta(telepro.bd.pegar(name, "pos"))
 				
 				if meta:get_string("status") ~= "ativo" then
 					minetest.chat_send_player(name, "Balao inoperante. Aguarde mantenha o local limpo e aberto e aguarde ele ficar pronto.")
@@ -106,7 +112,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 			
 			-- Pegar coordenada do bau
-			local pos = telepro.bd:pegar(name, "pos")
+			local pos = telepro.bd.pegar(name, "pos")
 			
 			-- Verificar se o balao ja esta ativo
 			local meta = minetest.get_meta(pos)
@@ -139,12 +145,12 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 			
 			-- Verificar se o jogador tem um balao
-			if telepro.bd:verif(name, "pos") ~= true then
+			if telepro.bd.verif(name, "pos") ~= true then
 				return telepro.acessar(minetest.get_player_by_name(name))
 			end
 			
 			-- Verificar se o balao esta ativo
-			if minetest.get_meta(telepro.bd:pegar(name, "pos")):get_string("status") ~= "ativo" then
+			if minetest.get_meta(telepro.bd.pegar(name, "pos")):get_string("status") ~= "ativo" then
 				minetest.chat_send_player(name, "O Seu Balao nao esta funcionando. O local foi destruido ou obstruido.")
 			end
 			

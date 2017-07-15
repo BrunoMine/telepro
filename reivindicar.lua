@@ -111,9 +111,9 @@ telepro.reivindicar = function(player)
 	-- Desativa o bau anterior
 	do
 		-- Verificar se existe registro no banco de dados
-		if telepro.bd:verif(name, "pos") == true then
+		if telepro.bd.verif(name, "pos") == true then
 			-- Pega a coordenada
-			local p = telepro.bd:pegar(name, "pos")
+			local p = telepro.bd.pegar(name, "pos")
 			-- Acessa os metadados
 			local meta = minetest.get_meta(p)
 			-- Limpa o parametro dono
@@ -130,7 +130,7 @@ telepro.reivindicar = function(player)
 	meta:set_string("status", "ativo") -- Salvar status inicial
 	
 	-- Salva a coordenada do novo bau no banco de dados
-	telepro.bd:salvar(name, "pos", pos)
+	telepro.bd.salvar(name, "pos", pos)
 	
 	-- Montar balao
 	telepro.montar_balao(pos, name)

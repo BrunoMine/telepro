@@ -27,14 +27,11 @@ telepro.spawn = minetest.setting_get_pos("static_spawnpoint") or {x=0, y=0, z=0}
 -- Carregar scripts
 notificar("Carregando scripts...")
 
--- Scripts mod memor embarcado
-dofile(modpath.."/memor/init.lua")
 -- Criação do banco de dados
-telepro.bd = memor.montar_bd()
--- Criar tabela de jogadores online
-telepro.online = memor.online()
+telepro.bd = dofile(modpath.."/lib/memor.lua")
 
 -- Funções
+dofile(modpath.."/online.lua")
 dofile(modpath.."/reivindicar.lua")
 dofile(modpath.."/ir_balao.lua")
 dofile(modpath.."/comum.lua")

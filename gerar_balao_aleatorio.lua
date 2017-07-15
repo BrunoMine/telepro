@@ -36,9 +36,9 @@ local finalizar = function(player, pos)
 	-- Desativa o bau anterior
 	do
 		-- Verificar se existe registro no banco de dados
-		if telepro.bd:verif(name, "pos") == true then
+		if telepro.bd.verif(name, "pos") == true then
 			-- Pega a coordenada
-			local pp = telepro.bd:pegar(name, "pos")
+			local pp = telepro.bd.pegar(name, "pos")
 			-- Acessa os metadados
 			local meta = minetest.get_meta(pp)
 			-- Limpa o parametro dono
@@ -55,7 +55,7 @@ local finalizar = function(player, pos)
 	meta:set_string("status", "ativo") -- Salvar status inicial
 	
 	-- Salva a coordenada do novo bau no banco de dados
-	telepro.bd:salvar(name, "pos", pb)
+	telepro.bd.salvar(name, "pos", pb)
 	
 	-- Montar balao
 	telepro.montar_balao(pb, name)
