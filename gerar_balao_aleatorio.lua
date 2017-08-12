@@ -9,9 +9,19 @@
 	Gerar um Balao Aleatorio
   ]]
 
+-- Tabela de jogadores que estão em precesso de geração de balao (evitar geração dupla)
+local gerando = {}
+
 -- Finaliza o procedimento de gerar balao
-local finalizar = function(player, pos)
-	if not player then return end
+local finalizar = function(name, spos)
+	local player = minetest.get_player_by_name(name)
+	
+	if not player then 
+		gerando[name] = nil
+		return 
+	end
+	
+	local pos = minetest.deserialize(spos)
 	
 	-- Carregar mapa
 	minetest.get_voxel_manip():read_from_map({x=pos.x-10,y=pos.y-10, z=pos.z-10}, {x=pos.x+10,y=pos.y+80, z=pos.z+10})
@@ -21,10 +31,8 @@ local finalizar = function(player, pos)
 	
 	-- Verifica se encontrou uma terra superficial
 	if table.maxn(nodes) == 0 then 
-		return telepro.gerar_balao_aleatorio(player)
+		return telepro.gerar_balao_aleatorio(name)
 	end
-	
-	local name = player:get_player_name()
 	
 	-- Pegar uma coordenada
 	local p = nodes[1]
@@ -69,16 +77,25 @@ local finalizar = function(player, pos)
 	
 	-- Finaliza
 	minetest.chat_send_player(name, "Novo local gerado. Mantenha o local do balao bem aberto.")
-	
+	gerando[name] = nil
 end
 
 -- Gerar um balao aleatorio (ignora verificações)
-telepro.gerar_balao_aleatorio = function(player)
+telepro.gerar_balao_aleatorio = function(name)
+	if gerando[name] then
+		return
+	end 
+	gerando[name] = true
+	
+	local player = minetest.get_player_by_name(name)
+	
+	if not player then 
+		gerando[name] = nil
+		return 
+	end
 	
 	-- Pegar uma coordenada aleatória
 	local pos = {x=math.random(-25000, 25000), y = 10, z=math.random(-25000, 25000)}
-	
-	local name = player:get_player_name()
 	
 	-- Verificar area protegida
 	if minetest.is_protected({x=pos.x+5, y=pos.y, z=pos.z+5}, name) 
@@ -101,13 +118,13 @@ telepro.gerar_balao_aleatorio = function(player)
 		or minetest.is_protected({x=pos.x+20, y=pos.y+25, z=pos.z-20}, name)
 		or minetest.is_protected({x=pos.x-20, y=pos.y+25, z=pos.z-20}, name)
 	then
-		return telepro.gerar_balao_aleatorio(player)
+		return telepro.gerar_balao_aleatorio(name)
 	end
 	
 	-- Inicia geração de mapa
 	minetest.emerge_area({x=pos.x-10,y=pos.y-10, z=pos.z-10}, {x=pos.x+10,y=pos.y+80, z=pos.z+10})
 	
 	-- Espera um tempo para continuar
-	minetest.after(8, finalizar, player, pos)
+	minetest.after(8, finalizar, name, minetest.serialize(pos))
 	
 end

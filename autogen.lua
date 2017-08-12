@@ -9,25 +9,16 @@
 	Gerar balao automaticamente
   ]]
 
-minetest.register_on_newplayer(function(player)
+-- Certifica de que jogador tem um balao, caso ainda não tenha cria um
+minetest.register_on_joinplayer(function(player)
 	if not player then return end
 	
-	minetest.after(3, minetest.show_formspec, player:get_player_name(), "telepro:intro", "size[10,8]"
-		..default.gui_bg
-		..default.gui_bg_img
-		.."image[0,0;12,4.5;telepro_intro.png]"
-		
-		.."image[1,4;1.5,1;telepro_pt.png]"
-		.."label[2.5,4;Esse Bau pode te teleportar de sua casa para \no centro e vice versa]"
-		
-		.."image[1,5.5;1.5,1;telepro_es.png]"
-		.."label[2.5,5.5;Este Bau que puede teletransportarse desde su \ncasa al centro y viceversa]"
-		
-		.."image[1,7;1.5,1;telepro_en.png]"
-		.."label[2.5,7;This Block can teleport you from your home \nto the center and vice versa]"
-	)
-		
-	telepro.gerar_balao_aleatorio(player)
+	-- Pegar nome do jogador
+	local name = player:get_player_name()
+	
+	-- Verifica se o registro de balao existe no banco de dados
+	if telepro.bd.verif(name, "pos") == false then
+		telepro.gerar_balao_aleatorio(name)
+	end
 end)
-
 
