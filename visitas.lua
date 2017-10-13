@@ -63,6 +63,11 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			
 			local name = player:get_player_name()
 			
+			if name == fields.visitado then
+				minetest.chat_send_player(name, "Nao podes seguir a si mesmo")
+				return
+			end
+			
 			if not telepro.online[fields.visitado] then
 				minetest.chat_send_player(name, "\""..fields.visitado.."\" offline ou inexistente")
 				return
