@@ -26,12 +26,13 @@ telepro.acessar_bau = function(player)
 	-- Exibir formulario de opcoes ao jogador
 	
 	-- Cria formspec
-	local formspec = "size[6,4.8]"
+	local formspec = "size[6,5.8]"
 		..default.gui_bg
 		..default.gui_bg_img
 		.."image[0,0;7.3,3;telepro_intro.png]"
 		.."button_exit[0,3;6,1;ir_centro;Ir para Centro]"
 		.."button_exit[0,4;6,1;reparar;Reparar Balao]"
+		.."button[0,5;6,1;visitas;Receber seguidor]"
 	
 	-- Exibir formspec
 	minetest.show_formspec(player:get_player_name(), "telepro:bau", formspec)
@@ -48,11 +49,12 @@ telepro.acessar_bau_spawn = function(player)
 	-- Exibir formulario de opcoes ao jogador
 	
 	-- Cria formspec
-	local formspec = "size[6,4]"
+	local formspec = "size[6,5]"
 		..default.gui_bg
 		..default.gui_bg_img
 		.."image[0,0;7.3,3;telepro_intro.png]"
-		.."button_exit[0,3;6,1;ir_balao;Ir para o posto de seu Balao]"
+		.."button[0,3;6,1;visitas;Seguir jogador]"
+		.."button_exit[0,4;6,1;ir_balao;Ir para o posto de seu Balao]"
 	
 	-- Exibir formspec
 	minetest.show_formspec(player:get_player_name(), "telepro:bau_spawn", formspec)
@@ -65,8 +67,12 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	-- Bau do jogador
 	if formname == "telepro:bau" then
 		
+		-- Gerenciar visitas
+		if fields.visitas then
+			telepro.acessar_visitas(player, "proprio")
+			
 		-- Botao de ir para o centro
-		if fields.ir_centro then
+		elseif fields.ir_centro then
 			
 			-- Pegar nome do jogador
 			local name = player:get_player_name()
@@ -128,9 +134,13 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	
 	-- Bau do Spawn
 	elseif formname == "telepro:bau_spawn" then
-		
+	
+		-- Gerenciar visitas
+		if fields.visitas then
+			telepro.acessar_visitas(player, "centro")
+			
 		-- Teleportar para o posto do balao do jogador
-		if fields.ir_balao then
+		elseif fields.ir_balao then
 		
 			-- Pegar nome do jogador
 			local name = player:get_player_name()

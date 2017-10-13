@@ -37,10 +37,13 @@ dofile(modpath.."/ir_balao.lua")
 dofile(modpath.."/comum.lua")
 dofile(modpath.."/reparar_balao.lua")
 dofile(modpath.."/gerar_balao_aleatorio.lua")
+dofile(modpath.."/check_balao_proprio.lua")
 
 -- Interfaces
+dofile(modpath.."/visitas.lua")
 dofile(modpath.."/interface_bau.lua")
 dofile(modpath.."/interface_jogador.lua")
+
 
 -- Balao
 dofile(modpath.."/balao.lua")
