@@ -31,7 +31,7 @@ minetest.register_node("telepro:bau", {
 		"default_chest_front.png" -- Frente
 	},
 	paramtype2 = "facedir",
-	groups = {choppy = 2, oddly_breakable_by_hand = 2},
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, not_in_creative_inventory = 1},
 	sounds = default.node_sound_wood_defaults(),
 	on_rightclick = function(pos, node, player)
 		local meta = minetest.get_meta(pos)

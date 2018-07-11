@@ -10,8 +10,8 @@
   ]]
 
 -- Node
-minetest.register_node("telepro:balao_decorativo", {
-	description = "Balao Decorativo",
+minetest.register_node("telepro:node_balao_decorativo", {
+	description = "Node de Balao Decorativo",
 	tiles = {"telepro_balao.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -19,7 +19,26 @@ minetest.register_node("telepro:balao_decorativo", {
 	drawtype = "mesh",
 	mesh = "telepro_node_balao.b3d",
 	visual_scale = 0.45,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, not_in_creative_inventory = 1},
+	sounds = default.node_sound_wood_defaults(),
+	drop = "",
+})
+
+-- Node de inventario
+minetest.register_node("telepro:balao_decorativo", {
+	description = "Balao Decorativo",
+	tiles = {"telepro_balao.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	drawtype = "mesh",
+	mesh = "telepro_node_balao_inv.b3d",
+	visual_scale = 1,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2},
 	sounds = default.node_sound_wood_defaults(),
 	drop = "",
+	
+	on_construct = function(pos)
+		minetest.set_node(pos, {name = "telepro:node_balao_decorativo"})
+	end,
 })

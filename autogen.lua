@@ -17,7 +17,7 @@ minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	
 	-- Verifica se o registro de balao existe no banco de dados
-	if telepro.bd.verif(name, "pos") == false then
+	if telepro.bd.verif("jogador_"..name, "pos") == false then
 		telepro.gerar_balao_aleatorio(name)
 	end
 end)

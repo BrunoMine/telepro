@@ -29,7 +29,7 @@ minetest.register_node("telepro:balao_jogador", {
 	drawtype = "mesh",
 	mesh = "telepro_node_balao.b3d",
 	visual_scale = 0.45,
-	groups = {choppy = 2, oddly_breakable_by_hand = 2},
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, not_in_creative_inventory = 1},
 	sounds = default.node_sound_wood_defaults(),
 	drop = "",
 })
