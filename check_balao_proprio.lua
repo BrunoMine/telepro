@@ -21,13 +21,13 @@ telepro.check_balao_proprio = function(player)
 	local name = player:get_player_name()
 	
 	-- Verificar se o jogador tem um balao
-	if telepro.bd.verif(name, "pos") ~= true then
+	if telepro.bd.verif("jogador_"..name, "pos") ~= true then
 		minetest.chat_send_player(name, "Precisas ter um balao ativo")
 		return 1, "Nenhum balao proprio existente"
 	end
 	
 	-- Pega os metadados do bau
-	local meta = minetest.get_meta(telepro.bd.pegar(name, "pos"))
+	local meta = minetest.get_meta(telepro.bd.pegar("jogador_"..name, "pos"))
 	if meta:get_string("status") ~= "ativo" then
 		return 2, "Balao proprio inoperante"
 	end

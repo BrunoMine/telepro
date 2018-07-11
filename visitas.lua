@@ -35,7 +35,8 @@ telepro.acessar_visitas = function(player, tipo)
 			.."label[0,0;Pedidos recebidos]"
 			.."dropdown[0,0.5;5.25,1;visita;"..visitas..";]"
 			.."button[0,1.15;5,1;receber_visita;Receber seguidor]"
-		
+			
+			.."image[0.4,2;1.5,1.5;telepro_aceitar_visita.png]"
 			.."button[2,2.25;3,1;voltar;Voltar]"
 			
 	elseif tipo == "centro" then
@@ -45,7 +46,8 @@ telepro.acessar_visitas = function(player, tipo)
 			..default.gui_bg_img
 			.."field[0.28,0.8;5,1;visitado;Seguir jogador;]"
 			.."button_exit[0,1.25;5,1;enviar_pedido;Enviar pedido]"
-		
+			
+			.."image[0.4,2;1.5,1.5;telepro_visitar.png]"
 			.."button[2,2.25;3,1;voltar;Voltar]"
 	end
 		

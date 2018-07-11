@@ -37,16 +37,16 @@ telepro.reivindicar = function(player)
 	local pos = player:getpos()
 	
 	-- Verifica se está numa coordenada muito baixa (menor que o nível do mar)
-	if pos.y < 0 then
+	if pos.y < 10 then
 		minetest.chat_send_player(name, "Local muito baixo. Precisa subir para um local mais alto.")
 		return false
 	end
 	
 	-- Verificar se está na luz do dia (força estar na superficie)
 	do
-		local luz = minetest.get_node_light(pos)
+		local luz = minetest.get_node_light(pos, 0.5)
 		if not luz or luz < 13 then
-			minetest.chat_send_player(name, "Precisa estar na luz do dia.")
+			minetest.chat_send_player(name, "Precisa estar num lugar mais aberto.")
 			return false
 		end
 	end
@@ -111,9 +111,9 @@ telepro.reivindicar = function(player)
 	-- Desativa o bau anterior
 	do
 		-- Verificar se existe registro no banco de dados
-		if telepro.bd.verif(name, "pos") == true then
+		if telepro.bd.verif("jogador_"..name, "pos") == true then
 			-- Pega a coordenada
-			local p = telepro.bd.pegar(name, "pos")
+			local p = telepro.bd.pegar("jogador_"..name, "pos")
 			-- Acessa os metadados
 			local meta = minetest.get_meta(p)
 			-- Limpa o parametro dono
@@ -130,7 +130,7 @@ telepro.reivindicar = function(player)
 	meta:set_string("status", "ativo") -- Salvar status inicial
 	
 	-- Salva a coordenada do novo bau no banco de dados
-	telepro.bd.salvar(name, "pos", pos)
+	telepro.bd.salvar("jogador_"..name, "pos", pos)
 	
 	-- Montar balao
 	telepro.montar_balao(pos, name)

@@ -30,13 +30,13 @@ telepro.ir_balao = function(player)
 	local name = player:get_player_name()
 	
 	-- Verifica se o registro de balao existe no banco de dados
-	if telepro.bd.verif(name, "pos") == false then
+	if telepro.bd.verif("jogador_"..name, "pos") == false then
 		minetest.chat_send_player(player:get_player_name(), "Sem nenhum balao ainda.")
 		return false
 	end
 	
 	-- Pegar coordenada do bau
-	local pos = telepro.bd.pegar(name, "pos")
+	local pos = telepro.bd.pegar("jogador_"..name, "pos")
 	
 	-- Verificar se o balao existente no banco de dados ainda existe no mapa
 	do

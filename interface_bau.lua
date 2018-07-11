@@ -29,10 +29,14 @@ telepro.acessar_bau = function(player)
 	local formspec = "size[6,5.8]"
 		..default.gui_bg
 		..default.gui_bg_img
-		.."image[0,0;7.3,3;telepro_intro.png]"
-		.."button_exit[0,3;6,1;ir_centro;Ir para Centro]"
-		.."button_exit[0,4;6,1;reparar;Reparar Balao]"
-		.."button[0,5;6,1;visitas;Receber seguidor]"
+		.."image[1.7,-0.25;3,3;telepro_ir_centro.png]"
+		.."button_exit[0,2.4;6,1;ir_centro;Ir para Centro]"
+		
+		.."image[0.1,3.7;1,1;screwdriver.png]"
+		.."button_exit[1,3.7;5,1;reparar;Reparar Balao]"
+		
+		.."image[0.1,5;1,1;telepro_aceitar_visita.png]"
+		.."button[1,5;5,1;visitas;Receber seguidor]"
 	
 	-- Exibir formspec
 	minetest.show_formspec(player:get_player_name(), "telepro:bau", formspec)
@@ -49,12 +53,14 @@ telepro.acessar_bau_spawn = function(player)
 	-- Exibir formulario de opcoes ao jogador
 	
 	-- Cria formspec
-	local formspec = "size[6,5]"
+	local formspec = "size[6,3]"
 		..default.gui_bg
 		..default.gui_bg_img
-		.."image[0,0;7.3,3;telepro_intro.png]"
-		.."button[0,3;6,1;visitas;Seguir jogador]"
-		.."button_exit[0,4;6,1;ir_balao;Ir para o posto de seu Balao]"
+		.."image[0.1,-0.2;3,3;telepro_ir_casa.png]"
+		.."button_exit[0,2;3,1;ir_balao;Ir para seu Balao]"
+		.."image[3.1,-0.2;3,3;telepro_visitar.png]"
+		.."button[3,2;3,1;visitas;Seguir jogador]"
+		
 	
 	-- Exibir formspec
 	minetest.show_formspec(player:get_player_name(), "telepro:bau_spawn", formspec)
@@ -81,7 +87,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			local pos = player:getpos()
 			
 			-- Verificar se o jogador tem um balao
-			if telepro.bd.verif(name, "pos") ~= true then
+			if telepro.bd.verif("jogador_"..name, "pos") ~= true then
 				minetest.chat_send_player(name, "Precisas ter um balao ativo")
 				return
 			end
@@ -95,7 +101,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			-- Verifica status do bau do balao
 			do
 				-- Pega os metadados do bau
-				local meta = minetest.get_meta(telepro.bd.pegar(name, "pos"))
+				local meta = minetest.get_meta(telepro.bd.pegar("jogador_"..name, "pos"))
 				
 				if meta:get_string("status") ~= "ativo" then
 					minetest.chat_send_player(name, "Balao inoperante. Aguarde mantenha o local limpo e aberto e aguarde ele ficar pronto.")
@@ -118,7 +124,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 			
 			-- Pegar coordenada do bau
-			local pos = telepro.bd.pegar(name, "pos")
+			local pos = telepro.bd.pegar("jogador_"..name, "pos")
 			
 			-- Verificar se o balao ja esta ativo
 			local meta = minetest.get_meta(pos)
@@ -155,12 +161,13 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 			
 			-- Verificar se o jogador tem um balao
-			if telepro.bd.verif(name, "pos") ~= true then
+			if telepro.bd.verif("jogador_"..name, "pos") ~= true then
+				minetest.chat_send_all("dados de jogador_"..name.." nao encontrado")
 				return telepro.acessar(minetest.get_player_by_name(name))
 			end
 			
 			-- Verificar se o balao esta ativo
-			if minetest.get_meta(telepro.bd.pegar(name, "pos")):get_string("status") ~= "ativo" then
+			if minetest.get_meta(telepro.bd.pegar("jogador_"..name, "pos")):get_string("status") ~= "ativo" then
 				minetest.chat_send_player(name, "O Seu Balao nao esta funcionando. O local foi destruido ou obstruido.")
 			end
 			

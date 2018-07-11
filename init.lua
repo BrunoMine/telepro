@@ -21,14 +21,16 @@ local modpath = minetest.get_modpath("telepro")
 -- Variavel global
 telepro = {}
 
--- Spawn do servidor (para onde os baloes permitem ir)
-telepro.spawn = minetest.setting_get_pos("static_spawnpoint") or {x=0, y=0, z=0}
-
 -- Carregar scripts
 notificar("Carregando scripts...")
 
 -- Criação do banco de dados
 telepro.bd = dofile(modpath.."/lib/memor.lua")
+
+-- Spawn do servidor (para onde os baloes permitem ir)
+if telepro.bd.verif("centro", "pos") == true then
+	telepro.spawn = telepro.bd.pegar("centro", "pos")
+end
 
 -- Funções
 dofile(modpath.."/online.lua")
@@ -52,6 +54,7 @@ dofile(modpath.."/balao.lua")
 dofile(modpath.."/corda.lua")
 dofile(modpath.."/bau.lua")
 dofile(modpath.."/bau_spawn.lua")
+dofile(modpath.."/balao_decor.lua")
 
 -- Comandos
 dofile(modpath.."/comandos.lua")

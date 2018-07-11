@@ -14,9 +14,9 @@ telepro.reparar_balao = function(name, pos)
 	
 	-- Verificar se está na luz do dia (força estar na superficie)
 	do
-		local luz = minetest.get_node_light({x=pos.x, y=pos.y+1, z=pos.z+1})
+		local luz = minetest.get_node_light({x=pos.x, y=pos.y+1, z=pos.z+1}, 0.5)
 		if not luz or luz < 13 then
-			minetest.chat_send_player(name, "Precisa estar na luz do dia.")
+			minetest.chat_send_player(name, "Precisa estar em local aberto.")
 			return false
 		end
 	end

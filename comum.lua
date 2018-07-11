@@ -45,7 +45,7 @@ end
 
 
 -- Criar balao e cordas para um bau de balao (ignora verificações)
-telepro.montar_balao = function(pos, name)
+telepro.montar_balao = function(pos)
 	
 	-- Colocar cordas
 	do
@@ -63,6 +63,6 @@ telepro.montar_balao = function(pos, name)
 	end
 	
 	-- Colocar balao
-	telepro.criar_balao({x=pos.x, y=pos.y+23, z=pos.z}, pos, name)
+	minetest.set_node({x=pos.x, y=pos.y+25, z=pos.z}, {name="telepro:balao_jogador"})
 	
 end

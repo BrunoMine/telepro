@@ -9,6 +9,16 @@
 	Bau do balao
   ]]
 
+-- Pegar node distante nao carregado
+local function pegar_node(pos)
+	local node = minetest.get_node(pos)
+	if node.name == "ignore" then
+		minetest.get_voxel_manip():read_from_map(pos, pos)
+		node = minetest.get_node(pos)
+	end
+	return node
+end
+
 -- Node
 minetest.register_node("telepro:bau", {
 	description = "Bau do Balao",
@@ -37,7 +47,7 @@ minetest.register_node("telepro:bau", {
 -- Atualização constante do balão
 minetest.register_abm{
 	nodenames = {"telepro:bau"},
-	interval = 2,
+	interval = 5,
 	chance = 1,
 	action = function(pos)
 	
@@ -50,46 +60,6 @@ minetest.register_abm{
 		--
 		-- Verificar se ta tudo ok
 		--
-		
-		-- Salvar o nome do dono
-		if meta:get_string("status") == "ativo" then
-			
-			-- Verificar cordas
-			do
-				-- Pegar os nodes
-				local nodes = minetest.find_nodes_in_area(
-					{x=pos.x, y=pos.y+1, z=pos.z}, 
-					{x=pos.x, y=pos.y+24, z=pos.z}, 
-					{"telepro:corda_balao"}
-				)
-				-- Verificar se estao todos
-				if table.maxn(nodes) < 24 then
-					-- Desativa o bau
-					meta:set_string("status", "inativo")
-					return
-				end
-			end
-			
-			-- Verifica balao
-			do
-				local r = false -- Variavel que avisa se achou o balao
-				for  _,obj in ipairs(minetest.get_objects_inside_radius(pos, 30)) do
-					local ent = obj:get_luaentity() or {}
-					-- Verifica se eh o balao
-					if ent and ent.name == "telepro:balao" and ent.dono == meta:get_string("dono") then
-						r = true -- achou balao
-					end
-				end
-				if r == false then
-					-- Desativa o bau
-					meta:set_string("status", "inativo")
-					return
-				end
-			end
-			
-			-- Tudo ok
-			return
-		end
 		
 		--
 		-- Verificar se consegue colocar o balao e cordas
@@ -115,7 +85,7 @@ minetest.register_abm{
 			local nodes = minetest.find_nodes_in_area(
 				{x=pos.x-7, y=pos.y+24, z=pos.z-7}, 
 				{x=pos.x+7, y=pos.y+24+25, z=pos.z+7}, 
-				{"air", "telepro:corda_balao"}
+				{"air", "telepro:corda_balao", "telepro:balao_jogador"}
 			)
 		
 			-- Verifica se pegou todos nodes de ar
@@ -133,7 +103,19 @@ minetest.register_abm{
 		-- Montar o balao e cordas
 		--
 		
-		telepro.montar_balao(pos, meta:get_string("dono"))
+		-- Verifica se ja tem todas as cordas
+		if table.maxn(minetest.find_nodes_in_area(
+				{x=pos.x, y=pos.y+1, z=pos.z}, 
+				{x=pos.x, y=pos.y+24, z=pos.z}, 
+				{"telepro:corda_balao"}
+			)) ~= 24 
+			-- Verifica balao
+			or pegar_node({x=pos.x, y=pos.y+25, z=pos.z}).name ~= "telepro:balao_jogador"
+		
+		then
+			-- Repara tudo
+			telepro.montar_balao(pos)
+		end
 		
 		meta:set_string("status", "ativo")
 		
