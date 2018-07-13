@@ -1,0 +1,15 @@
+{
+    "name": "telepro",
+    "description": "Transporte para jogadores",
+    "keywords": [
+        "telepro"
+    ],
+    "homepage": "https://github.com/BrunoMine/telepro",
+    "forum": "https://forum.minetest.net/viewtopic.php?t=1",
+    "screenshots": [
+        "https://raw.githubusercontent.com/BrunoMine/telepro/master/screenshot.png"
+    ],
+    "authors": [
+        "BrunoMine"
+    ]
+}
