@@ -28,6 +28,7 @@ notificar("Carregando scripts...")
 telepro.bd = dofile(modpath.."/lib/memor.lua")
 
 -- Spawn do servidor (para onde os baloes permitem ir)
+telepro.spawn = {x=0, y=0, z=0}
 if telepro.bd.verif("centro", "pos") == true then
 	telepro.spawn = telepro.bd.pegar("centro", "pos")
 end
