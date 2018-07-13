@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-13 00:49-0300\n"
+"POT-Creation-Date: 2018-07-13 17:51-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,6 +43,10 @@ msgstr ""
 
 #: bau_spawn.lua
 msgid "Precisa do privilegio 'server' para colocar esse bau"
+msgstr ""
+
+#: comandos.lua
+msgid "Painel de Balao"
 msgstr ""
 
 #: corda.lua
@@ -99,10 +103,6 @@ msgstr ""
 
 #: ir_balao.lua
 msgid "Sem nenhum balao ainda"
-msgstr ""
-
-#: ir_balao.lua
-msgid "Seu balao foi destruido"
 msgstr ""
 
 #: ir_balao.lua

@@ -9,21 +9,13 @@
 	Comandos
   ]]
 
+local S = telepro.S
+
 -- Reivindicar balao
-minetest.register_chatcommand("sethome", {
+minetest.register_chatcommand("balloon", {
 	privs = {},
-	params = "Nenhum",
-	description = "Reivindica um balao no local",
+	description = S("Painel de Balao"),
 	func = function(name,  param)
 		telepro.acessar(minetest.get_player_by_name(name))
-	end
-})
-
-minetest.register_chatcommand("home", {
-	privs = {},
-	params = "Nenhum",
-	description = "Vai para o balao",
-	func = function(name,  param)
-		minetest.chat_send_player(name, "Utilize o Bau do Balao para isso.")
 	end
 })

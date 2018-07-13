@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-13 00:49-0300\n"
-"PO-Revision-Date: 2018-07-13 00:45-0300\n"
+"POT-Creation-Date: 2018-07-13 17:51-0300\n"
+"PO-Revision-Date: 2018-07-13 17:52-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -45,6 +45,10 @@ msgstr "Novo centro definido"
 #: bau_spawn.lua
 msgid "Precisa do privilegio 'server' para colocar esse bau"
 msgstr "Precisa do privilegio 'server' para colocar esse bau"
+
+#: comandos.lua
+msgid "Painel de Balao"
+msgstr "Painel de Balao"
 
 #: corda.lua
 msgid "Corda de Balao"
@@ -101,10 +105,6 @@ msgstr "Por Balao Aqui"
 #: ir_balao.lua
 msgid "Sem nenhum balao ainda"
 msgstr "Sem nenhum balao ainda"
-
-#: ir_balao.lua
-msgid "Seu balao foi destruido"
-msgstr "Seu balao foi destruido"
 
 #: ir_balao.lua
 msgid "Viagem para o posto de seu balao realizada"
@@ -219,6 +219,9 @@ msgstr "Precisa estar num lugar mais aberto"
 #: mensagens.lua
 msgid "Objetos obstruem a parte de cima portanto libere o local ou suba"
 msgstr "Objetos obstruem a parte de cima portanto libere o local ou suba"
+
+#~ msgid "Seu balao foi destruido"
+#~ msgstr "Seu balao foi destruido"
 
 #~ msgid ""
 #~ "Objetos obstruem a parte de cima portanto remova os objetos e tente "

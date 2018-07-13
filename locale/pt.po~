@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-13 00:36-0300\n"
+"POT-Creation-Date: 2018-07-13 00:49-0300\n"
 "PO-Revision-Date: 2018-07-13 00:45-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -124,12 +124,6 @@ msgid ""
 msgstr ""
 "Parte de cima obstruida (onde fica o balao) portanto libere o local ou suba"
 
-#: reparar_balao.lua
-msgid ""
-"Objetos obstruem a parte de cima portanto remova os objetos e tente novamente"
-msgstr ""
-"Objetos obstruem a parte de cima portanto remova os objetos e tente novamente"
-
 #: visitas.lua
 msgid "Pedidos recebidos"
 msgstr "Pedidos recebidos"
@@ -225,6 +219,13 @@ msgstr "Precisa estar num lugar mais aberto"
 #: mensagens.lua
 msgid "Objetos obstruem a parte de cima portanto libere o local ou suba"
 msgstr "Objetos obstruem a parte de cima portanto libere o local ou suba"
+
+#~ msgid ""
+#~ "Objetos obstruem a parte de cima portanto remova os objetos e tente "
+#~ "novamente"
+#~ msgstr ""
+#~ "Objetos obstruem a parte de cima portanto remova os objetos e tente "
+#~ "novamente"
 
 #~ msgid "Precisa estar em local aberto"
 #~ msgstr "Precisa estar em local aberto"

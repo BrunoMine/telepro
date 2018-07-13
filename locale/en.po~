@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-13 00:36-0300\n"
-"PO-Revision-Date: 2018-07-13 00:36-0300\n"
+"POT-Creation-Date: 2018-07-13 00:49-0300\n"
+"PO-Revision-Date: 2018-07-13 00:59-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -125,11 +125,6 @@ msgstr ""
 "Top is obstructed (where the balloon is) so wipe the top or go to a highest "
 "location"
 
-#: reparar_balao.lua
-msgid ""
-"Objetos obstruem a parte de cima portanto remova os objetos e tente novamente"
-msgstr "Objects obstruct the top so remove the objects and try again"
-
 #: visitas.lua
 msgid "Pedidos recebidos"
 msgstr "Requests received"
@@ -224,9 +219,13 @@ msgid "Precisa estar num lugar mais aberto"
 msgstr "You need to be in a cleaner and more open place"
 
 #: mensagens.lua
-#, fuzzy
 msgid "Objetos obstruem a parte de cima portanto libere o local ou suba"
 msgstr "Objects obstruct the top so remove the objects and try again"
+
+#~ msgid ""
+#~ "Objetos obstruem a parte de cima portanto remova os objetos e tente "
+#~ "novamente"
+#~ msgstr "Objects obstruct the top so remove the objects and try again"
 
 #~ msgid "Precisa estar em local aberto"
 #~ msgstr "It needs to be in a clean and open place"
