@@ -1,0 +1,215 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-13 00:49-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: balao.lua balao_decor.lua
+msgid "Balao Decorativo"
+msgstr ""
+
+#: balao_decor.lua
+msgid "Node de Balao Decorativo"
+msgstr ""
+
+#: bau.lua
+msgid "Bau do Balao"
+msgstr ""
+
+#: bau.lua
+msgid "Esse Balao nao lhe pertence"
+msgstr ""
+
+#: bau_spawn.lua
+msgid "Bau do Balao do Centro"
+msgstr ""
+
+#: bau_spawn.lua
+msgid "Novo centro definido"
+msgstr ""
+
+#: bau_spawn.lua
+msgid "Precisa do privilegio 'server' para colocar esse bau"
+msgstr ""
+
+#: corda.lua
+msgid "Corda de Balao"
+msgstr ""
+
+#: gerar_balao_aleatorio.lua
+msgid "Novo local encontrado"
+msgstr ""
+
+#: interface_bau.lua
+msgid "Muito distante do seu Bau de Balao"
+msgstr ""
+
+#: interface_bau.lua
+msgid "Ir para Centro"
+msgstr ""
+
+#: interface_bau.lua
+msgid "Reparar Balao"
+msgstr ""
+
+#: interface_bau.lua visitas.lua
+msgid "Receber seguidor"
+msgstr ""
+
+#: interface_bau.lua
+msgid "Ir para seu Balao"
+msgstr ""
+
+#: interface_bau.lua visitas.lua
+msgid "Seguir jogador"
+msgstr ""
+
+#: interface_bau.lua
+msgid "Precisas ter um balao ativo"
+msgstr ""
+
+#: interface_bau.lua mensagens.lua
+msgid "Viagem ao Centro realizada"
+msgstr ""
+
+#: interface_bau.lua
+msgid "Balao ativo"
+msgstr ""
+
+#: interface_jogador.lua
+msgid "Gerar Balao"
+msgstr ""
+
+#: interface_jogador.lua
+msgid "Por Balao Aqui"
+msgstr ""
+
+#: ir_balao.lua
+msgid "Sem nenhum balao ainda"
+msgstr ""
+
+#: ir_balao.lua
+msgid "Seu balao foi destruido"
+msgstr ""
+
+#: ir_balao.lua
+msgid "Viagem para o posto de seu balao realizada"
+msgstr ""
+
+#: reivindicar.lua
+msgid "Balao reivindicado com sucesso"
+msgstr ""
+
+#: reparar_balao.lua
+msgid "O caminho para cima esta obstruido (corda) portanto abra mais o local"
+msgstr ""
+
+#: reparar_balao.lua
+msgid ""
+"Parte de cima obstruida (onde fica o balao) portanto libere o local ou suba"
+msgstr ""
+
+#: visitas.lua
+msgid "Pedidos recebidos"
+msgstr ""
+
+#: visitas.lua
+msgid "Voltar"
+msgstr ""
+
+#: visitas.lua
+msgid "Enviar pedido"
+msgstr ""
+
+#: visitas.lua
+msgid "Nao podes seguir a si mesmo"
+msgstr ""
+
+#: visitas.lua
+msgid "@1 offline ou inexistente"
+msgstr ""
+
+#: visitas.lua
+msgid "Pedido enviado a @1 ... Agora precisa pedir para aceitar seu pedido"
+msgstr ""
+
+#: visitas.lua
+msgid "Pedido invalido"
+msgstr ""
+
+#: visitas.lua
+msgid "@1 offline"
+msgstr ""
+
+#: visitas.lua
+msgid "@1 saiu de perto do balao do centro"
+msgstr ""
+
+#: visitas.lua
+msgid "Seu pedido para seguir @1 foi aceito mas voce se afastou do balao"
+msgstr ""
+
+#: visitas.lua
+msgid "@1 te seguiu"
+msgstr ""
+
+#: visitas.lua
+msgid "Voce seguiu @1"
+msgstr ""
+
+#: mensagens.lua
+msgid ""
+"Nao pode gerar um novo balao ainda (sao necessarias 24 horas desde a ultima "
+"vez que gerou)"
+msgstr ""
+
+#: mensagens.lua
+msgid "Aguarde alguns segundos enquanto o balao esta endo preparado"
+msgstr ""
+
+#: mensagens.lua
+msgid "O Seu Balao ficou inoperante"
+msgstr ""
+
+#: mensagens.lua
+msgid "Muito distante do Bau de Balao do Centro"
+msgstr ""
+
+#: mensagens.lua
+msgid "Muito distante do seu proprio Bau de Balao"
+msgstr ""
+
+#: mensagens.lua
+msgid ""
+"Mantenha o local limpo e aberto para levantar que o balao seja levantado "
+"automaticamente"
+msgstr ""
+
+#: mensagens.lua
+msgid "Viagem para seu proprio balao realizada"
+msgstr ""
+
+#: mensagens.lua
+msgid "Precisa subir para um local mais alto"
+msgstr ""
+
+#: mensagens.lua
+msgid "Precisa estar num lugar mais aberto"
+msgstr ""
+
+#: mensagens.lua
+msgid "Objetos obstruem a parte de cima portanto libere o local ou suba"
+msgstr ""

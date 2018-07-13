@@ -9,9 +9,11 @@
 	Bau do balao do spawn
   ]]
 
+local S = telepro.S
+
 -- Node
 minetest.register_node("telepro:bau_spawn", {
-	description = "Bau do Balao do Centro",
+	description = S("Bau do Balao do Centro"),
 	tiles = {
 		"default_chest_top.png^telepro_bau_cima.png", -- Cima
 		"default_chest_top.png", -- Baixo
@@ -32,9 +34,9 @@ minetest.register_node("telepro:bau_spawn", {
 		if pointed_thing and pointed_thing.above and minetest.check_player_privs(placer:get_player_name(), {server=true}) == true then
 			telepro.spawn = pos
 			telepro.bd.salvar("centro", "pos", {x=pos.x, y=pos.y+2, z=pos.z})
-			minetest.chat_send_all("Novo centro definido")
+			minetest.chat_send_player(placer:get_player_name(), S("Novo centro definido"))
 		else
-			minetest.chat_send_all("Precisa do privilegio 'server' para colocar esse bau")
+			minetest.chat_send_player(placer:get_player_name(), S("Precisa do privilegio 'server' para colocar esse bau"))
 			minetest.remove_node(pos)
 		end
 	end,

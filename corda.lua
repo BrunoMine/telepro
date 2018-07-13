@@ -9,12 +9,14 @@
 	Corda do Balao
   ]]
 
+local S = telepro.S
+
 -- Variavel que impede que cordas sejam colocadas (ativa as verificações da fisica das cordas)
 telepro.cordas_f = true
 
 -- Node
 minetest.register_node("telepro:corda_balao", {
-	description = "Corda de Balao",
+	description = S("Corda de Balao"),
 	drawtype = "torchlike",
 	tiles = {"telepro_corda_balao.png"},
 	paramtype = "light",

@@ -9,6 +9,8 @@
 	Bau do balao
   ]]
 
+local S = telepro.S
+
 -- Pegar node distante nao carregado
 local function pegar_node(pos)
 	local node = minetest.get_node(pos)
@@ -21,7 +23,7 @@ end
 
 -- Node
 minetest.register_node("telepro:bau", {
-	description = "Bau do Balao",
+	description = S("Bau do Balao"),
 	tiles = {
 		"default_chest_top.png^telepro_bau_cima.png", -- Cima
 		"default_chest_top.png", -- Baixo
@@ -38,7 +40,7 @@ minetest.register_node("telepro:bau", {
 		if (meta:get_string("dono") or "") == player:get_player_name() then
 			telepro.acessar_bau(player)
 		else
-			minetest.chat_send_player(player:get_player_name(), "Esse Balao nao lhe pertence.")
+			minetest.chat_send_player(player:get_player_name(), S("Esse Balao nao lhe pertence"))
 		end
 	end,
 	drop = "",

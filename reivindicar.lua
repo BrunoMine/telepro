@@ -9,6 +9,8 @@
 	Função para Reivindicar balao
   ]]
 
+local S = telepro.S
+
 -- Lista de jogadores que não podem gerar novo balao
 telepro.travados = {}
 
@@ -29,7 +31,7 @@ telepro.reivindicar = function(player)
 	
 	-- Verificar se está travado
 	if telepro.travados[name] == true then 
-		minetest.chat_send_player(name, "Nao pode gerar um novo balao ainda. (sao necessarias 24 horas desde a ultima vez que gerou)")
+		minetest.chat_send_player(name, S(telepro.msg.limite_de_usos_por_dia))
 		return false
 	end
 	
@@ -38,7 +40,7 @@ telepro.reivindicar = function(player)
 	
 	-- Verifica se está numa coordenada muito baixa (menor que o nível do mar)
 	if pos.y < 10 then
-		minetest.chat_send_player(name, "Local muito baixo. Precisa subir para um local mais alto.")
+		minetest.chat_send_player(name, S(telepro.msg.local_muito_baixo))
 		return false
 	end
 	
@@ -46,7 +48,7 @@ telepro.reivindicar = function(player)
 	do
 		local luz = minetest.get_node_light(pos, 0.5)
 		if not luz or luz < 13 then
-			minetest.chat_send_player(name, "Precisa estar num lugar mais aberto.")
+			minetest.chat_send_player(name, S(telepro.msg.local_muito_fechado))
 			return false
 		end
 	end
@@ -69,7 +71,7 @@ telepro.reivindicar = function(player)
 		
 		-- Verifica se pegou nodes de ar
 		if table.maxn(nodes) < 25 then
-			minetest.chat_send_player(name, "O caminho para cima esta obstruido. Encontre um lugar onde de para o balao descer.")
+			minetest.chat_send_player(name, S())
 			return false
 		end
 	end
@@ -85,7 +87,7 @@ telepro.reivindicar = function(player)
 	
 		-- Verifica se pegou todos nodes de ar
 		if table.maxn(nodes) < 5850 then -- 15 * 15 * 26
-			minetest.chat_send_player(name, "Parte de cima obstruida. Libere o local ou suba.")
+			minetest.chat_send_player(name, S(telepro.msg.local_muito_fechado))
 			return false
 		end
 	end
@@ -104,7 +106,7 @@ telepro.reivindicar = function(player)
 	
 	-- Verificar entidades na area do balao
 	if table.maxn(minetest.get_objects_inside_radius({x=pos.x, y=pos.y+23, z=pos.z}, 15)) > 0 then
-		minetest.chat_send_player(name, "Objetos obstruem a parte de cima. Libere o local ou suba.")
+		minetest.chat_send_player(name, S(telepro.msg.objetos_obstruem_balao))
 		return
 	end
 	
@@ -143,6 +145,6 @@ telepro.reivindicar = function(player)
 	minetest.after(3600, telepro.destravar, name)
 	
 	-- Finaliza
-	minetest.chat_send_player(name, "Balao reivindicado com sucesso.")
+	minetest.chat_send_player(name, S("Balao reivindicado com sucesso"))
 	return true
 end

@@ -9,6 +9,8 @@
 	Funções simples e comuns
   ]]
 
+local S = telepro.S
+
 -- Verificar se o bau de balaode um jogador está perto
 telepro.verif_prox_bau = function(player)
 	

@@ -9,6 +9,8 @@
 	Função para teleportar para balao
   ]]
 
+local S = telepro.S
+
 -- Pegar node, mesmo que não esteja na memoria
 local function pegar_node(pos)
 	local node = minetest.get_node(pos)
@@ -31,7 +33,7 @@ telepro.ir_balao = function(player)
 	
 	-- Verifica se o registro de balao existe no banco de dados
 	if telepro.bd.verif("jogador_"..name, "pos") == false then
-		minetest.chat_send_player(player:get_player_name(), "Sem nenhum balao ainda.")
+		minetest.chat_send_player(player:get_player_name(), S("Sem nenhum balao ainda"))
 		return false
 	end
 	
@@ -43,7 +45,7 @@ telepro.ir_balao = function(player)
 		
 		-- Verificar se o nome do bloco é o de uma bau
 		if pegar_node(pos).name ~= "telepro:bau" then
-			minetest.chat_send_player(player:get_player_name(), "Seu balao foi destruido.")
+			minetest.chat_send_player(player:get_player_name(), S("Seu balao foi destruido"))
 			return false
 		end
 		
@@ -55,7 +57,7 @@ telepro.ir_balao = function(player)
 		
 		-- Verifica se é o mesmo nome do jogador
 		if n ~= name then
-			minetest.chat_send_player(player:get_player_name(), "Seu balao foi destruido.")
+			minetest.chat_send_player(player:get_player_name(), S("Seu balao foi destruido"))
 			return false
 		end
 		
@@ -65,7 +67,7 @@ telepro.ir_balao = function(player)
 	player:setpos({x=pos.x, y=pos.y+1.5, z=pos.z})
 	
 	-- Finaliza
-	minetest.chat_send_player(player:get_player_name(), "Viagem para o posto de seu balao realizada.")
+	minetest.chat_send_player(player:get_player_name(), S("Viagem para o posto de seu balao realizada"))
 	return true
 	
 end

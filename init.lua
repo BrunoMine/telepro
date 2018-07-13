@@ -33,6 +33,7 @@ if telepro.bd.verif("centro", "pos") == true then
 end
 
 -- Funções
+dofile(modpath.."/tradutor.lua")
 dofile(modpath.."/online.lua")
 dofile(modpath.."/reivindicar.lua")
 dofile(modpath.."/ir_balao.lua")

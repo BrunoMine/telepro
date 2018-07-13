@@ -9,6 +9,8 @@
 	Reparar Balao
   ]]
 
+local S = telepro.S
+
 -- Metodo para reparar o balao
 telepro.reparar_balao = function(name, pos)
 	
@@ -16,7 +18,7 @@ telepro.reparar_balao = function(name, pos)
 	do
 		local luz = minetest.get_node_light({x=pos.x, y=pos.y+1, z=pos.z+1}, 0.5)
 		if not luz or luz < 13 then
-			minetest.chat_send_player(name, "Precisa estar em local aberto.")
+			minetest.chat_send_player(name, S(telepro.msg.local_muito_fechado))
 			return false
 		end
 	end
@@ -32,7 +34,7 @@ telepro.reparar_balao = function(name, pos)
 		
 		-- Verifica se pegou nodes de ar
 		if table.maxn(nodes) < 24 then
-			minetest.chat_send_player(name, "O caminho para cima esta obstruido (corda). Abra mais o local."..table.maxn(nodes))
+			minetest.chat_send_player(name, S("O caminho para cima esta obstruido (corda) portanto abra mais o local"))
 			return false
 		end
 	end
@@ -48,14 +50,14 @@ telepro.reparar_balao = function(name, pos)
 	
 		-- Verifica se pegou todos nodes de ar
 		if table.maxn(nodes) < 5850 then -- 15 * 15 * 26
-			minetest.chat_send_player(name, "Parte de cima obstruida (onde fica o balao). Libere o local ou suba.")
+			minetest.chat_send_player(name, S("Parte de cima obstruida (onde fica o balao) portanto libere o local ou suba"))
 			return false
 		end
 	end
 	
 	-- Verificar entidades na area do balao
 	if table.maxn(minetest.get_objects_inside_radius({x=pos.x, y=pos.y+23, z=pos.z}, 15)) > 0 then
-		minetest.chat_send_player(name, "Objetos obstruem a parte de cima. remova os objetos e tente novamente.")
+		minetest.chat_send_player(name, S(telepro.msg.objetos_obstruem_balao))
 		return
 	end
 	

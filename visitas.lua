@@ -9,6 +9,8 @@
 	Visitas
   ]]
 
+local S = telepro.S
+
 -- Acesar interface do jogador para visitas
 telepro.acessar_visitas = function(player, tipo)
 	if not player then
@@ -32,23 +34,23 @@ telepro.acessar_visitas = function(player, tipo)
 		formspec = "size[5,3]"
 			..default.gui_bg
 			..default.gui_bg_img
-			.."label[0,0;Pedidos recebidos]"
+			.."label[0,0;"..S("Pedidos recebidos").."]"
 			.."dropdown[0,0.5;5.25,1;visita;"..visitas..";]"
-			.."button[0,1.15;5,1;receber_visita;Receber seguidor]"
+			.."button[0,1.15;5,1;receber_visita;"..S("Receber seguidor").."]"
 			
 			.."image[0.4,2;1.5,1.5;telepro_aceitar_visita.png]"
-			.."button[2,2.25;3,1;voltar;Voltar]"
+			.."button[2,2.25;3,1;voltar;"..S("Voltar").."]"
 			
 	elseif tipo == "centro" then
 		-- Cria formspec
 		formspec = "size[5,3]"
 			..default.gui_bg
 			..default.gui_bg_img
-			.."field[0.28,0.8;5,1;visitado;Seguir jogador;]"
-			.."button_exit[0,1.25;5,1;enviar_pedido;Enviar pedido]"
+			.."field[0.28,0.8;5,1;visitado;"..S("Seguir jogador")..";]"
+			.."button_exit[0,1.25;5,1;enviar_pedido;"..S("Enviar pedido").."]"
 			
 			.."image[0.4,2;1.5,1.5;telepro_visitar.png]"
-			.."button[2,2.25;3,1;voltar;Voltar]"
+			.."button[2,2.25;3,1;voltar;"..S("Voltar").."]"
 	end
 		
 	-- Exibir formspec
@@ -66,12 +68,12 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			local name = player:get_player_name()
 			
 			if name == fields.visitado then
-				minetest.chat_send_player(name, "Nao podes seguir a si mesmo")
+				minetest.chat_send_player(name, S("Nao podes seguir a si mesmo"))
 				return
 			end
 			
 			if not telepro.online[fields.visitado] then
-				minetest.chat_send_player(name, "\""..fields.visitado.."\" offline ou inexistente")
+				minetest.chat_send_player(name, S("@1 offline ou inexistente", "'"..fields.visitado.."'"))
 				return
 			end
 			
@@ -82,7 +84,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			-- Insere nome na tabela de pedidos
 			temp.pedidos_visita[name] = true
 			
-			minetest.chat_send_player(name, "Pedido enviado a \""..fields.visitado.."\". Avise para aceitar")
+			minetest.chat_send_player(name, S("Pedido enviado a @1 ... Agora precisa pedir para aceitar seu pedido", "'"..fields.visitado.."'"))
 			
 		elseif fields.voltar then
 			telepro.acessar_bau_spawn(player)
@@ -99,13 +101,13 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			
 			-- Verifica se pedido ainda existe
 			if not fields.visita or not temp.pedidos_visita[fields.visita] then
-				minetest.chat_send_player(name, "Pedido invalido "..dump(fields.visita))
+				minetest.chat_send_player(name, S("Pedido invalido"))
 				return
 			end
 			
 			-- Verifica se o visitante ainda esta online
 			if not telepro.online[fields.visita] then
-				minetest.chat_send_player(name, "\""..fields.visita.."\" offline")
+				minetest.chat_send_player(name, S("@1 offline", "'"..fields.visita.."'"))
 				return
 			end
 			
@@ -113,16 +115,16 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			
 			-- Verifica se visitante esta perto do balao de centro
 			if not minetest.find_node_near(visitante:getpos(), 25, {"telepro:bau_spawn"}) then
-				minetest.chat_send_player(name, "\""..fields.visita.."\" saiu de perto do balao do centro")
-				minetest.chat_send_player(fields.visita, "Seu pedido para seguir \""..name.."\" foi aceito mas voce se afastou do balao")
+				minetest.chat_send_player(name, S("@1 saiu de perto do balao do centro", "'"..fields.visita.."'"))
+				minetest.chat_send_player(fields.visita, S("Seu pedido para seguir @1 foi aceito mas voce se afastou do balao", "'"..name.."'"))
 				return
 			end
 			
 			-- Teleporta jogador
 			visitante:setpos(player:getpos())
 			temp.pedidos_visita[fields.visita] = nil
-			minetest.chat_send_player(name, "\""..fields.visita.."\" te seguiu")
-			minetest.chat_send_player(fields.visita, "Voce seguiu \""..name.."\"")
+			minetest.chat_send_player(name, S("@1 te seguiu", "'"..fields.visita.."'"))
+			minetest.chat_send_player(fields.visita, S("Voce seguiu @1", "'"..name.."'"))
 			
 		elseif fields.voltar then
 			telepro.acessar_bau(player)

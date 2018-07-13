@@ -9,6 +9,8 @@
 	Balao
   ]]
 
+local S = telepro.S
+
 -- Pegar node distante nao carregado
 local function pegar_node(pos)
 	local node = minetest.get_node(pos)
@@ -21,7 +23,7 @@ end
 
 -- Node
 minetest.register_node("telepro:balao_jogador", {
-	description = "Balao Decorativo",
+	description = S("Balao Decorativo"),
 	tiles = {"telepro_balao.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",

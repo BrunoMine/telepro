@@ -9,6 +9,8 @@
 	Gerar um Balao Aleatorio
   ]]
 
+local S = telepro.S
+
 -- Tabela de jogadores que estão em precesso de geração de balao (evitar geração dupla)
 local gerando = {}
 
@@ -76,7 +78,7 @@ local finalizar = function(name, spos)
 	minetest.after(3600, telepro.destravar, name)
 	
 	-- Finaliza
-	minetest.chat_send_player(name, "Novo local gerado. Mantenha o local do balao bem aberto.")
+	minetest.chat_send_player(name, S("Novo local encontrado"))
 	gerando[name] = nil
 end
 

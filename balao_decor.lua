@@ -9,9 +9,11 @@
 	Balao Decorativo para Spawn
   ]]
 
+local S = telepro.S
+
 -- Node
 minetest.register_node("telepro:node_balao_decorativo", {
-	description = "Node de Balao Decorativo",
+	description = S("Node de Balao Decorativo"),
 	tiles = {"telepro_balao.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -26,7 +28,7 @@ minetest.register_node("telepro:node_balao_decorativo", {
 
 -- Node de inventario
 minetest.register_node("telepro:balao_decorativo", {
-	description = "Balao Decorativo",
+	description = S("Balao Decorativo"),
 	tiles = {"telepro_balao.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
