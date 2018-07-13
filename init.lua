@@ -34,6 +34,7 @@ end
 
 -- Funções
 dofile(modpath.."/tradutor.lua")
+dofile(modpath.."/mensagens.lua")
 dofile(modpath.."/online.lua")
 dofile(modpath.."/reivindicar.lua")
 dofile(modpath.."/ir_balao.lua")

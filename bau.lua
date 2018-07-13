@@ -35,6 +35,8 @@ minetest.register_node("telepro:bau", {
 	paramtype2 = "facedir",
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, not_in_creative_inventory = 1},
 	sounds = default.node_sound_wood_defaults(),
+	drop = "",
+	
 	on_rightclick = function(pos, node, player)
 		local meta = minetest.get_meta(pos)
 		if (meta:get_string("dono") or "") == player:get_player_name() then
@@ -43,7 +45,14 @@ minetest.register_node("telepro:bau", {
 			minetest.chat_send_player(player:get_player_name(), S("Esse Balao nao lhe pertence"))
 		end
 	end,
-	drop = "",
+	
+	-- Remove corda em cima caso exista
+	after_destruct = function(pos, oldnode)
+		local node_superior = minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z})
+		if node_superior.name == "telepro:corda_balao" then
+			minetest.remove_node({x=pos.x, y=pos.y+1, z=pos.z})
+		end
+	end,
 })
 
 -- Atualização constante do balão

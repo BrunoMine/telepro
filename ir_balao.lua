@@ -44,10 +44,11 @@ telepro.ir_balao = function(player)
 	do
 		
 		-- Verificar se o nome do bloco é o de uma bau
-		if pegar_node(pos).name ~= "telepro:bau" then
-			minetest.chat_send_player(player:get_player_name(), S("Seu balao foi destruido"))
-			return false
-		end
+		-- CANCELADO: não deve ser necessario, isso pode atrapalhar muito o retorno do jogador, ao retornar ele resolvera isso
+		--if pegar_node(pos).name ~= "telepro:bau" then
+		--	minetest.chat_send_player(player:get_player_name(), S("Seu balao foi destruido"))
+		--	return false
+		--end
 		
 		-- Pega os metadados do bau
 		local meta = minetest.get_meta(pos)
@@ -56,10 +57,11 @@ telepro.ir_balao = function(player)
 		local n = meta:get_string("dono") or ""
 		
 		-- Verifica se é o mesmo nome do jogador
-		if n ~= name then
-			minetest.chat_send_player(player:get_player_name(), S("Seu balao foi destruido"))
-			return false
-		end
+		-- CANCELADO: não deve ser necessario, isso pode atrapalhar muito o retorno do jogador, ao reto
+		--if n ~= name then
+		--	minetest.chat_send_player(player:get_player_name(), S("Seu balao foi destruido"))
+		--	return false
+		--end
 		
 	end
 	

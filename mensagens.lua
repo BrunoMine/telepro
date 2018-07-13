@@ -35,7 +35,7 @@ telepro.msg = {
 	-- Local baixo
 	local_muito_baixo = S("Precisa subir para um local mais alto"),
 	-- Local muito fechado (obstruções ao balao)
-	local_muito_fechado = S("Precisa estar num lugar mais aberto")
+	local_muito_fechado = S("Precisa estar num lugar mais aberto"),
 	-- Objetos estao ocupando a area que o modelo/malha do balão vai ocupar
-	objetos_obstruem_balao = S("Objetos obstruem a parte de cima portanto libere o local ou suba")
+	objetos_obstruem_balao = S("Objetos obstruem a parte de cima portanto libere o local ou suba"),
 }

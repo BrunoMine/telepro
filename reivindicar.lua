@@ -30,10 +30,11 @@ telepro.reivindicar = function(player)
 	local name = player:get_player_name()
 	
 	-- Verificar se está travado
-	if telepro.travados[name] == true then 
-		minetest.chat_send_player(name, S(telepro.msg.limite_de_usos_por_dia))
-		return false
-	end
+	-- CANCELADO: O balao fica travado no local, evitando que o jogar explore tão rapido
+	--if telepro.travados[name] == true then 
+	--	minetest.chat_send_player(name, S(telepro.msg.limite_de_usos_por_dia))
+	--	return false
+	--end
 	
 	-- Pegar coordenada do jogador
 	local pos = player:getpos()
@@ -141,8 +142,9 @@ telepro.reivindicar = function(player)
 	player:setpos({x=pos.x, y=pos.y+1.5, z=pos.z})
 	
 	-- Travar por 24 horas para impedir ficar gerando em vaios locais
-	telepro.travados[name] = true
-	minetest.after(3600, telepro.destravar, name)
+	-- CANCELADO: O balao fica travado no local, evitando que o jogar explore tão rapido
+	--telepro.travados[name] = true
+	--minetest.after(3600, telepro.destravar, name)
 	
 	-- Finaliza
 	minetest.chat_send_player(name, S("Balao reivindicado com sucesso"))

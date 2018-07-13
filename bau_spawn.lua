@@ -33,7 +33,7 @@ minetest.register_node("telepro:bau_spawn", {
 		-- Verifica privilegios de quem coloca
 		if pointed_thing and pointed_thing.above and minetest.check_player_privs(placer:get_player_name(), {server=true}) == true then
 			telepro.spawn = pos
-			telepro.bd.salvar("centro", "pos", {x=pos.x, y=pos.y+2, z=pos.z})
+			telepro.bd.salvar("centro", "pos", {x=pos.x, y=pos.y+3, z=pos.z})
 			minetest.chat_send_player(placer:get_player_name(), S("Novo centro definido"))
 		else
 			minetest.chat_send_player(placer:get_player_name(), S("Precisa do privilegio 'server' para colocar esse bau"))

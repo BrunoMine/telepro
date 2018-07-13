@@ -114,6 +114,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			-- Teleportar jogador
 			player:setpos(telepro.spawn)
 			minetest.chat_send_player(name, S("Viagem ao Centro realizada"))
+			
 		elseif fields.reparar then
 			
 			-- Pegar nome do jogador
@@ -167,10 +168,11 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 				return telepro.acessar(minetest.get_player_by_name(name))
 			end
 			
-			-- Verificar se o balao esta ativo
-			if minetest.get_meta(telepro.bd.pegar("jogador_"..name, "pos")):get_string("status") ~= "ativo" then
-				minetest.chat_send_player(name, S(telepro.msg.balao_inativo))
-			end
+			-- Verificar se o balao esta ativo 
+			-- CANCELADO: não deve ser necessario, isso pode atrapalhar muito o retorno do jogador, ao retornar ele resolvera isso
+			--if minetest.get_meta(telepro.bd.pegar("jogador_"..name, "pos")):get_string("status") ~= "ativo" then
+			--	minetest.chat_send_player(name, S(telepro.msg.balao_inativo))
+			--end
 			
 			-- Tenta teleportar o jogador
 			telepro.ir_balao(player)

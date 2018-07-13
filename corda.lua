@@ -35,6 +35,12 @@ minetest.register_node("telepro:corda_balao", {
 		if telepro.cordas_f == true and minetest.get_node({x=pos.x,y=pos.y-1,z=pos.z}).name == "telepro:corda_balao" then
 			minetest.remove_node({x=pos.x,y=pos.y-1,z=pos.z})
 		end
+		
+		-- Remove corda ou balao em cima caso exista
+		local node_superior = minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z})
+		if node_superior.name == "telepro:corda_balao" or node_superior.name == "telepro:balao_jogador" then
+			minetest.remove_node({x=pos.x, y=pos.y+1, z=pos.z})
+		end
 	end,
 	
 	-- Ao ser colocado de uma pos
