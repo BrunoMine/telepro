@@ -115,10 +115,16 @@ do
 				for en,lang in pairs(en_to_lang) do
 					new_file = new_file .. en .. "=" .. lang .. "\n"
 				end
-				-- Escrever arquivo
 				local saida = io.open(modpath.."/locale/telepro."..lang_code..".tr", "w")
 				saida:write(new_file)
 				io.close(saida)
+				
+				-- Gera arquivo com lang_code nulo para evitar mensagens de erro (bug do minetest)
+				if lang_code == "en" then
+					local saida2 = io.open(modpath.."/locale/telepro..tr", "w")
+					saida2:write(new_file)
+					io.close(saida2)
+				end
 			end
 		end
 	end
