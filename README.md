@@ -1,8 +1,8 @@
 # Telepro v1.1.0
-[![download](https://img.shields.io/github/tag/BrunoMine/sociedades.svg?style=flat-square&label=release)](https://github.com/BrunoMine/sociedades/archive/v1.1.0.zip)
-[![git](https://img.shields.io/badge/git-project-green.svg?style=flat-square)](https://github.com/BrunoMine/sociedades)
-[![forum](https://img.shields.io/badge/minetest-mod-green.svg?style=flat-square)](https://forum.minetest.net/viewtopic.php?f=9&t=15382)
-[![bower](https://img.shields.io/badge/bower-mod-green.svg?style=flat-square)](https://minetest-bower.herokuapp.com/mods/sociedades)
+[![download](https://img.shields.io/github/tag/BrunoMine/sociedades.svg?style=flat-square&label=release)](https://github.com/BrunoMine/telepro/archive/v1.1.0.zip)
+[![git](https://img.shields.io/badge/git-project-green.svg?style=flat-square)](https://github.com/BrunoMine/telepro)
+[![forum](https://img.shields.io/badge/minetest-mod-green.svg?style=flat-square)](forum.minetest.net)
+[![bower](https://img.shields.io/badge/bower-mod-green.svg?style=flat-square)](https://minetest-bower.herokuapp.com/mods/telepro)
 
 ## Descrição _Description_
 Teleporte de jogadores via balões
