@@ -45,6 +45,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			
 			minetest.chat_send_player(player:get_player_name(), S(telepro.msg.aguardar_gerar_balao))
 			telepro.gerar_balao_aleatorio(name)
+			
 		elseif fields.por_balao_aqui then
 			if telepro.travados[name] == true then
 				minetest.chat_send_player(name, S(telepro.msg.limite_de_usos_por_dia))

@@ -58,7 +58,7 @@ minetest.register_node("telepro:bau", {
 -- Atualização constante do balão
 minetest.register_abm{
 	nodenames = {"telepro:bau"},
-	interval = 5,
+	interval = telepro.var.tempo_verificar_balao,
 	chance = 1,
 	action = function(pos)
 	

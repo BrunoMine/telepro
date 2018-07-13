@@ -32,6 +32,21 @@ if telepro.bd.verif("centro", "pos") == true then
 	telepro.spawn = telepro.bd.pegar("centro", "pos")
 end
 
+-- Variaveis personalizaveis
+telepro.var = {}
+
+-- Auto geração de balão em jogadores novos
+telepro.var.autogen = true
+if minetest.settings:get("telepro_autogen") == "false" then telepro.var.autogen = false end
+
+-- Limitação de uma geração automatica por dia
+telepro.var.limite_diario = true
+if minetest.settings:get("telepro_daily_limit") == "false" then telepro.var.limite_diario = false end
+
+-- Tempo de verificação do balao proprio
+telepro.var.tempo_verificar_balao = tonumber(minetest.setting_get("telepro_time_check_balloon") or 15)
+if telepro.var.tempo_verificar_balao < 5 then telepro.var.tempo_verificar_balao = 5 end
+
 -- Funções
 dofile(modpath.."/tradutor.lua")
 dofile(modpath.."/mensagens.lua")

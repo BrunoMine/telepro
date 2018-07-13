@@ -74,8 +74,10 @@ local finalizar = function(name, spos)
 	player:setpos({x=pb.x, y=pb.y+1.5, z=pb.z})
 	
 	-- Travar por 24 horas para impedir ficar gerando em vaios locais
-	telepro.travados[name] = true
-	minetest.after(3600, telepro.destravar, name)
+	if telepro.var.limite_diario == true then
+		telepro.travados[name] = true
+		minetest.after(3600, telepro.destravar, name)
+	end
 	
 	-- Finaliza
 	minetest.chat_send_player(name, S("Novo local encontrado"))

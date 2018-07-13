@@ -10,15 +10,17 @@
   ]]
 
 -- Certifica de que jogador tem um balao, caso ainda não tenha cria um
-minetest.register_on_joinplayer(function(player)
-	if not player then return end
-	
-	-- Pegar nome do jogador
-	local name = player:get_player_name()
-	
-	-- Verifica se o registro de balao existe no banco de dados
-	if telepro.bd.verif("jogador_"..name, "pos") == false then
-		telepro.gerar_balao_aleatorio(name)
-	end
-end)
+if telepro.var.autogen == true then
+	minetest.register_on_joinplayer(function(player)
+		if not player then return end
+		
+		-- Pegar nome do jogador
+		local name = player:get_player_name()
+		
+		-- Verifica se o registro de balao existe no banco de dados
+		if telepro.bd.verif("jogador_"..name, "pos") == false then
+			telepro.gerar_balao_aleatorio(name)
+		end
+	end)
+end
 

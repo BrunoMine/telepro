@@ -39,7 +39,7 @@ minetest.register_node("telepro:balao_jogador", {
 -- Verifica se tem bau ativo
 minetest.register_abm{
 	nodenames = {"telepro:balao_jogador"},
-	interval = 4,
+	interval = telepro.var.tempo_verificar_balao,
 	chance = 1,
 	action = function(pos)
 		
