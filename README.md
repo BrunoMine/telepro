@@ -1,24 +1,23 @@
-# Telepro v1.0.0
+# Telepro v1.1.0
+[![download](https://img.shields.io/github/tag/BrunoMine/sociedades.svg?style=flat-square&label=release)](https://github.com/BrunoMine/sociedades/archive/v1.1.0.zip)
+[![git](https://img.shields.io/badge/git-project-green.svg?style=flat-square)](https://github.com/BrunoMine/sociedades)
+[![forum](https://img.shields.io/badge/minetest-mod-green.svg?style=flat-square)](https://forum.minetest.net/viewtopic.php?f=9&t=15382)
+[![bower](https://img.shields.io/badge/bower-mod-green.svg?style=flat-square)](https://minetest-bower.herokuapp.com/mods/sociedades)
 
-[![Baixar](https://img.shields.io/badge/Baixar-v1.0.0-green.svg)](https://github.com/BrunoMine/telepro/archive/v1.0.0.zip)
-[![Projeto](https://img.shields.io/badge/Git-Projeto-green.svg)](https://github.com/BrunoMine/telepro)
-[![Licença](https://img.shields.io/badge/Licença-LGPL_v3.0-blue.svg)](https://github.com/BrunoMine/telepro/blob/master/LICENSE)
-
-## Descrição
-Transporte para jogadores
+## Descrição _Description_
+Teleporte de jogadores via balões
+Teleportation of players via balloons.
 
 ## Recursos do projeto
-
 * [Baixar](https://github.com/BrunoMine/telepro/archive/v1.0.0.zip)
 * [Projeto](https://github.com/BrunoMine/telepro)
 
-## Requisitos
-
-* Minetest 0.4.15 ou superior
+## Requisitos _(Requirements)_
+* Minetest 0.4.17 ou superior
 * Mod default
-* Mod memor (opcional)
+* Mod intllib (opicional)
 
-## Licença
+## Licença _(License)_
 Veja LICENSE.txt para informações detalhadas da licença LGPL 3.0
 
 ### Autores do código fonte
