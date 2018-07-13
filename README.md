@@ -6,7 +6,7 @@
 
 ## Descrição _Description_
 Teleporte de jogadores via balões
-Teleportation of players via balloons.
+_Teleportation of players via balloons_
 
 ## Recursos do projeto
 * [Baixar](https://github.com/BrunoMine/telepro/archive/v1.0.0.zip)
