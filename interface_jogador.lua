@@ -38,9 +38,10 @@ end
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	
 	if formname == "telepro:jogador" then
+		local name = player:get_player_name()
 		
 		if fields.gerar_balao then
-			local name = player:get_player_name()
+			
 			
 			if telepro.travados[name] == true then
 				minetest.chat_send_player(player:get_player_name(), S(telepro.msg.limite_de_usos_por_dia))
