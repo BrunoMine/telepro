@@ -23,9 +23,13 @@ telepro.acessar = function(player)
 		..default.gui_bg
 		..default.gui_bg_img
 		.."image[0,0;3.5,3.5;telepro_mapa.png]"
-		.."button_exit[0,3.25;3,1;gerar_balao;"..S("Gerar Balao").."]"
 		.."button_exit[0,4.25;3,1;por_balao_aqui;"..S("Por Balao Aqui").."]"
-		
+	
+	-- Botão de gerar balão aleatorio
+	if telepro.var.disable_random_balloon_button == false then
+		formspec = formspec.."button_exit[0,3.25;3,1;gerar_balao;"..S("Gerar Balao").."]"
+	end
+	
 	-- Exibir formspec
 	minetest.show_formspec(player:get_player_name(), "telepro:jogador", formspec)
 end

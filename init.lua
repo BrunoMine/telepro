@@ -44,6 +44,10 @@ if minetest.settings:get("telepro_autogen") == "false" then telepro.var.autogen 
 telepro.var.limite_diario = true
 if minetest.settings:get("telepro_daily_limit") == "false" then telepro.var.limite_diario = false end
 
+-- Desabilitar botão de geração de balão aleatorio
+telepro.var.disable_random_balloon_button = false
+if minetest.settings:get("telepro_disable_random_balloon_button") == "true" then telepro.var.disable_random_balloon_button = true end
+
 -- Tempo de verificação do balao proprio
 telepro.var.tempo_verificar_balao = tonumber(minetest.setting_get("telepro_time_check_balloon") or 15)
 if telepro.var.tempo_verificar_balao < 5 then telepro.var.tempo_verificar_balao = 5 end
