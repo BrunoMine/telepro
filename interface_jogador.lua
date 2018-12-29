@@ -63,3 +63,14 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 	
 end)
+
+-- Botão em menu compacto do inventario
+if sfinv_menu then
+	sfinv_menu.registrar_botao("telepro:micro_menu", {
+		titulo = S("Meu Balão"),
+		icon = "telepro_mapa.png",
+		func = function(player)
+			telepro.acessar(player)
+		end,
+	})
+end
