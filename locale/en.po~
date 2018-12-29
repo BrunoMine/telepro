@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-13 00:49-0300\n"
-"PO-Revision-Date: 2018-07-13 00:59-0300\n"
+"POT-Creation-Date: 2018-07-13 17:51-0300\n"
+"PO-Revision-Date: 2018-07-13 17:55-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -45,6 +45,10 @@ msgstr "New spawn center defined"
 #: bau_spawn.lua
 msgid "Precisa do privilegio 'server' para colocar esse bau"
 msgstr "Need the 'server' privilege to put this Balloon Box"
+
+#: comandos.lua
+msgid "Painel de Balao"
+msgstr "Balloon Menu"
 
 #: corda.lua
 msgid "Corda de Balao"
@@ -84,7 +88,7 @@ msgstr "You need to have an active balloon"
 
 #: interface_bau.lua mensagens.lua
 msgid "Viagem ao Centro realizada"
-msgstr "Journey to the Center held"
+msgstr "Trip to the Center held"
 
 #: interface_bau.lua
 msgid "Balao ativo"
@@ -101,10 +105,6 @@ msgstr "Place Balloon here"
 #: ir_balao.lua
 msgid "Sem nenhum balao ainda"
 msgstr "No balloon yet"
-
-#: ir_balao.lua
-msgid "Seu balao foi destruido"
-msgstr "Your balloon has been destroyed"
 
 #: ir_balao.lua
 msgid "Viagem para o posto de seu balao realizada"
@@ -193,7 +193,7 @@ msgstr "Your Balloon was inoperative"
 
 #: mensagens.lua
 msgid "Muito distante do Bau de Balao do Centro"
-msgstr "Far away from the Balloon Box of Spawn Center."
+msgstr "Far away from the Balloon Box of Spawn Center"
 
 #: mensagens.lua
 msgid "Muito distante do seu proprio Bau de Balao"
@@ -221,6 +221,9 @@ msgstr "You need to be in a cleaner and more open place"
 #: mensagens.lua
 msgid "Objetos obstruem a parte de cima portanto libere o local ou suba"
 msgstr "Objects obstruct the top so remove the objects and try again"
+
+#~ msgid "Seu balao foi destruido"
+#~ msgstr "Your balloon has been destroyed"
 
 #~ msgid ""
 #~ "Objetos obstruem a parte de cima portanto remova os objetos e tente "
