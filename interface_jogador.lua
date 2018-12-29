@@ -66,8 +66,8 @@ end)
 
 -- Botão em menu compacto do inventario
 if sfinv_menu then
-	sfinv_menu.registrar_botao("telepro:micro_menu", {
-		titulo = S("Meu Balão"),
+	sfinv_menu.register_button("telepro:micro_menu", {
+		title = S("Meu Balão"),
 		icon = "telepro_mapa.png",
 		func = function(player)
 			telepro.acessar(player)
