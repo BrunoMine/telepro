@@ -70,9 +70,9 @@ telepro.reivindicar = function(player)
 			{"air"}
 		)
 		
-		-- Verifica se pegou nodes de ar
+		-- Verifica se não pegou nodes de ar
 		if table.maxn(nodes) < 25 then
-			minetest.chat_send_player(name, S())
+			minetest.chat_send_player(name, S(telepro.msg.objetos_obstruem_balao))
 			return false
 		end
 	end
