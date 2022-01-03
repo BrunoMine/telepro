@@ -14,92 +14,28 @@ local S = telepro.S
 -- Tabela de jogadores que estão em precesso de geração de balao (evitar geração dupla)
 local gerando = {}
 
--- Finaliza o procedimento de gerar balao
-local finalizar = function(name, spos)
-	local player = minetest.get_player_by_name(name)
-	
-	if not player then 
-		gerando[name] = nil
-		return 
-	end
-	
-	local pos = minetest.deserialize(spos)
+-- Verificar area
+-- Retorna a coordenada de terra superficial adequada ou 'nil' se não encontrar
+local check_area = function(name, center_pos)
 	
 	-- Carregar mapa
-	minetest.get_voxel_manip():read_from_map({x=pos.x-10,y=pos.y-10, z=pos.z-10}, {x=pos.x+10,y=pos.y+80, z=pos.z+10})
+	minetest.get_voxel_manip():read_from_map(
+		{x=center_pos.x-10,y=center_pos.y-10, z=center_pos.z-10}, 
+		{x=center_pos.x+10,y=center_pos.y+80, z=center_pos.z+10})
 	
 	-- Procura grama
-	local nodes = minetest.find_nodes_in_area({x=pos.x-10,y=pos.y-10, z=pos.z-10}, {x=pos.x+10,y=pos.y+80, z=pos.z+10}, {"group:spreading_dirt_type"})
+	local nodes = minetest.find_nodes_in_area(
+		{x=center_pos.x-10,y=center_pos.y-10, z=center_pos.z-10}, 
+		{x=center_pos.x+10,y=center_pos.y+80, z=center_pos.z+10}, 
+		{"group:spreading_dirt_type"})
 	
 	-- Verifica se encontrou uma terra superficial
 	if table.maxn(nodes) == 0 then 
-		return telepro.gerar_balao_aleatorio(name)
-	end
-	
-	-- Pegar uma coordenada
-	local p = nodes[1]
-	
-	-- Cordenada do bau
-	local pb = {x=p.x, y=p.y+1, z=p.z}
-	
-	-- Colocar balao
-	-- Desativa o bau anterior
-	do
-		-- Verificar se existe registro no banco de dados
-		if telepro.bd.verif("jogador_"..name, "pos") == true then
-			-- Pega a coordenada
-			local pp = telepro.bd.pegar("jogador_"..name, "pos")
-			-- Acessa os metadados
-			local meta = minetest.get_meta(pp)
-			-- Limpa o parametro dono
-			meta:set_string("dono", "")
-		end
-	end
-	
-	-- Colocar Bau
-	minetest.set_node(pb, {name="telepro:bau"})
-	-- Pega os metadados do bau
-	local meta = minetest.get_meta(pb)
-	-- Salvar o nome do dono
-	meta:set_string("dono", name)
-	meta:set_string("status", "ativo") -- Salvar status inicial
-	
-	-- Salva a coordenada do novo bau no banco de dados
-	telepro.bd.salvar("jogador_"..name, "pos", pb)
-	
-	-- Montar balao
-	telepro.montar_balao(pb, name)
-	
-	-- Levar o jogador um pouco pra cima
-	player:setpos({x=pb.x, y=pb.y+1.5, z=pb.z})
-	
-	-- Travar por 24 horas para impedir ficar gerando em vaios locais
-	if telepro.var.limite_diario == true then
-		telepro.travados[name] = true
-		minetest.after(3600, telepro.destravar, name)
-	end
-	
-	-- Finaliza
-	minetest.chat_send_player(name, S("Novo local encontrado"))
-	gerando[name] = nil
-end
-
--- Gerar um balao aleatorio (ignora verificações)
-telepro.gerar_balao_aleatorio = function(name)
-	if gerando[name] then
 		return
-	end 
-	gerando[name] = true
-	
-	local player = minetest.get_player_by_name(name)
-	
-	if not player then 
-		gerando[name] = nil
-		return 
 	end
 	
-	-- Pegar uma coordenada aleatória
-	local pos = {x=math.random(-25000, 25000), y = 10, z=math.random(-25000, 25000)}
+	-- Pega uma coordenada de terra superficial
+	local pos = nodes[1]
 	
 	-- Verificar area protegida
 	if minetest.is_protected({x=pos.x+5, y=pos.y, z=pos.z+5}, name) 
@@ -122,13 +58,124 @@ telepro.gerar_balao_aleatorio = function(name)
 		or minetest.is_protected({x=pos.x+20, y=pos.y+25, z=pos.z-20}, name)
 		or minetest.is_protected({x=pos.x-20, y=pos.y+25, z=pos.z-20}, name)
 	then
-		return telepro.gerar_balao_aleatorio(name)
+		return
 	end
+	
+	-- Retorna coordenada de uma terra superficial
+	return pos
+end
+
+
+-- Inicia geração de uma coordenada aleatória
+local generate_random_pos = function(name)
+	
+	-- Pegar uma coordenada aleatória
+	local pos = {x=math.random(-25000, 25000), y = 10, z=math.random(-25000, 25000)}
 	
 	-- Inicia geração de mapa
 	minetest.emerge_area({x=pos.x-10,y=pos.y-10, z=pos.z-10}, {x=pos.x+10,y=pos.y+80, z=pos.z+10})
 	
-	-- Espera um tempo para continuar
-	minetest.after(8, finalizar, name, minetest.serialize(pos))
+	-- Retorna a coordenada que está sendo gerada
+	return pos
+end
+
+
+-- Finaliza o procedimento de gerar balao
+telepro.finalizar_geracao_balao = function(name, spos)
+	local player = minetest.get_player_by_name(name)
 	
+	-- Se jogador não está online encerra a geração
+	if not player then 
+		gerando[name] = nil
+		return 
+	end
+	
+	-- Restaura informação da coordenada gerada
+	local pos = minetest.deserialize(spos)
+	
+	-- Tenta pegar uma coordenada de terra superficial válida
+	local soil_pos = check_area(name, pos)
+	
+	-- Verifica se encontrou coordenda válida
+	if not soil_pos then
+	
+		-- Gera o mapa em uma coordenada aleatória
+		local new_pos = generate_random_pos()
+		
+		-- Tenta finalizar após 8 segundos
+		minetest.after(8, telepro.finalizar_geracao_balao, name, minetest.serialize(new_pos))
+		
+		-- Encerra tentativa de finalização
+		return
+	end
+	
+	-- Cordenada do bau
+	local chest_pos = {x=soil_pos.x, y=soil_pos.y+1, z=soil_pos.z}
+	
+	-- Desativa o bau anterior
+	-- Verificar se existe registro no banco de dados
+	if telepro.bd.verif("jogador_"..name, "pos") == true then
+		-- Pega a coordenada do bau antigo
+		local old_chest_pos = telepro.bd.pegar("jogador_"..name, "pos")
+		-- Acessa os metadados
+		local meta = minetest.get_meta(old_chest_pos)
+		-- Limpa o parametro dono
+		meta:set_string("dono", "")
+	end
+	
+	-- Colocar Bau
+	minetest.set_node(chest_pos, {name="telepro:bau"})
+	-- Pega os metadados do bau
+	local meta = minetest.get_meta(chest_pos)
+	-- Salvar o nome do dono
+	meta:set_string("dono", name)
+	meta:set_string("status", "ativo") -- Salvar status inicial
+	
+	-- Salva a coordenada do novo bau no banco de dados
+	telepro.bd.salvar("jogador_"..name, "pos", chest_pos)
+	
+	-- Montar balao
+	telepro.montar_balao(chest_pos, name)
+	
+	
+	-- Levar o jogador um pouco pra cima
+	player:setpos({x=chest_pos.x, y=chest_pos.y+1.5, z=chest_pos.z})
+	
+	-- Travar por 24 horas para impedir ficar gerando em vaios locais
+	if telepro.var.limite_diario == true then
+		telepro.travados[name] = true
+		minetest.after(3600, telepro.destravar, name)
+	end
+	
+	-- Remove jogador da lista de jogadores em processo de geração de balão
+	gerando[name] = nil
+	
+	-- Informa jogador
+	minetest.chat_send_player(name, S("Novo local encontrado"))
+end
+
+-- Gerar um balao aleatorio (ignora verificações)
+telepro.gerar_balao_aleatorio = function(name)
+	
+	-- Verifica se jogador já está em processo de geração de balão
+	if gerando[name] then
+		return
+	end
+	
+	local player = minetest.get_player_by_name(name)
+	
+	-- Verifica se jogador está online
+	if not player then 
+		gerando[name] = nil
+		return 
+	end
+	
+	-- Insere jogador na lista de jogadores em processo de geração de balão
+	gerando[name] = true
+	
+	-- Gera o mapa em uma coordenada aleatória
+	local pos = generate_random_pos()
+	
+	-- Tenta finalizar após 8 segundos
+	minetest.after(8, telepro.finalizar_geracao_balao, name, minetest.serialize(pos))
 end
